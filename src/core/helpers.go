@@ -184,9 +184,9 @@ func saveContainer(container *Container, containerPath string, ch chan os.FileIn
 		fileName := file.Name()
 		fullPath := filepath.Join(container.DirPath, fileName)
 
-		if _, ok := container.Structure[fileName]; !ok {
+		if content, ok := container.Structure[fileName]; !ok {
 			writeFileInContainer(container, fullPath, containerPath)
-		} else if content, exist := container.Structure[fileName]; exist {
+		} else {
 			updateContainer(container, fullPath, &content)
 		}
 
